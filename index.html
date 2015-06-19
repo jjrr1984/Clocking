@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+	<script src="http://momentjs.com/downloads/moment.min.js"></script>
+    <script src="app.js"></script>
+	<title>Clock-in/Clock-out</title>
+</head>
+<body data-ng-app="clocking" data-ng-controller="main">
+	<div>
+		<div id="time">{{time}}</div>
+		<button data-ng-hide="timeRunning" data-ng-click="decreaseHours()">-</button>
+		<div id="numberOfHours">Working hours:{{workingHours}}</div>
+		<button data-ng-hide="timeRunning" data-ng-click="increaseHours()">+</button>
+		<button data-ng-hide="timeRunning" data-ng-click="startClocking()" name="clockButton" type="button">{{startLabel}}</button>
+		<button data-ng-click="toggleBreak()" name="breakButton" type="button" value="Break">{{breakLabel}}</button>
+	</div>
+</body>
+</html>
