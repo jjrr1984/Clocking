@@ -1,14 +1,20 @@
 var app = angular.module("clocking",[]);
-app.controller('main',['$scope',function($scope){
+app.controller('main',['$scope','$interval',function($scope,$interval){
 
-	$scope.showTime = function(){
-		$scope.time = moment().format("h:mm:ss");
-		setTimeout($scope.showTime(),1000);
+	$scope.init = function(){
+		$scope.timeRunning = false;
+		$scope.breakStatus = 0;
+		$scope.startLabel = "Start workday";
+		$scope.breakLabel = "Start a break";
+		$scope.workingHours = "8";
+		$scope.time = moment().format("HH:mm:ss");
+		$interval(function(){
+			$scope.time = moment().format("HH:mm:ss");
+		},1000);
 	};
 
 	$scope.startClocking = function(){
 		$scope.timeRunning = true;
-		$scope.showTime();
 	};
 
 	$scope.toggleBreak = function(){
@@ -28,10 +34,6 @@ app.controller('main',['$scope',function($scope){
 		}
 	};
 
-	$scope.time = "";
-	$scope.timeRunning = false;
-	$scope.breakStatus = 0;
-	$scope.startLabel = "Start workday";
-	$scope.breakLabel = "Start a break";
-	$scope.workingHours = "8";
+	$scope.init();
+
 }]);
